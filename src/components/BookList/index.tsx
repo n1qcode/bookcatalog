@@ -11,18 +11,23 @@ import { BookListStyled } from './BookList.styles';
 
 const BookList = () => {
   const { bookShow } = useActions();
-  const {loading, payload} = useTypedSelector(state => state.book);
+  const { loading, payload } = useTypedSelector(state => state.book);
   const router = useNavigate();
   const [books, setBooks] = useState([]);
   const [page, setPage] = useState(1);
 
+  const bookFilter = () =>
+    payload?.items?.filter(
+      (_, index) => index >= (page - 1) * 5 && index < page * 5
+    );
+
   useEffect(() => {
-    setBooks(payload?.items?.filter((_, index) => (index >= (page - 1) * 5) && (index < page * 5)));
+    setBooks(bookFilter);
     setPage(1);
   }, [payload]);
 
   useEffect(() => {
-    setBooks(payload?.items?.filter((_, index) => (index >= (page - 1) * 5) && (index < page * 5)));
+    setBooks(bookFilter);
   }, [page]);
 
   const handlePageChange = (_, value: number) => {
@@ -34,22 +39,30 @@ const BookList = () => {
     bookShow(id);
   }, []);
 
-  return (
-    !loading ?
-      <BookListStyled>
-        {books?.map((elem: any) =>
-          (<BookCard
-            title={elem?.volumeInfo?.title}
-            authors={elem?.volumeInfo?.authors}
-            publishedDate={elem?.volumeInfo?.publishedDate}
-            description={elem?.volumeInfo?.description}
-            icon={elem?.volumeInfo?.imageLinks?.thumbnail}
-            show={() => showBookHandler(elem.id, elem?.volumeInfo?.title)}
-            key={elem.id}/>))}
-        {books?.length &&
-        <Pagination sx={{display: 'flex', justifyContent: 'center'}} count={Math.ceil(payload?.items?.length / 5) || 5} page={page} onChange={handlePageChange} /> }
-      </BookListStyled>      :
-      <h3>Searching...</h3>
+  return !loading ? (
+    <BookListStyled>
+      {books?.map((elem: any) => (
+        <BookCard
+          title={elem?.volumeInfo?.title}
+          authors={elem?.volumeInfo?.authors}
+          publishedDate={elem?.volumeInfo?.publishedDate}
+          description={elem?.volumeInfo?.description}
+          icon={elem?.volumeInfo?.imageLinks?.thumbnail}
+          show={() => showBookHandler(elem.id, elem?.volumeInfo?.title)}
+          key={elem.id}
+        />
+      ))}
+      {books?.length && (
+        <Pagination
+          sx={{ display: 'flex', justifyContent: 'center' }}
+          count={Math.ceil(payload?.items?.length / 5) || 5}
+          page={page}
+          onChange={handlePageChange}
+        />
+      )}
+    </BookListStyled>
+  ) : (
+    <h3>Searching...</h3>
   );
 };
 
