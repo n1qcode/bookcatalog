@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-import { bookReducer } from '../action-creators/Books/reducer';
+import { bookReducer } from './Book';
 
 export const rootReducer = combineReducers({
   book: bookReducer

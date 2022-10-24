@@ -1,12 +1,11 @@
 import { FC } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { RouteNames } from '../routes/Routes/Routes.enum';
+import { RouteNames } from '../router/routes/routes.enum';
 
 import {
   BodyStyled,
-  HeaderStyled,
-  LayoutStyled
+  HeaderStyled
 } from './Layout.styles';
 import { ILayoutProps } from './Layout.typings';
 import Header from './elements/Header';
@@ -16,7 +15,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
   const location = useLocation();
 
   return (
-    <LayoutStyled>
+    <>
       {(location.pathname === RouteNames.HOME)        &&
         <HeaderStyled>
           <Header />
@@ -24,7 +23,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
       <BodyStyled>
         {children}
       </BodyStyled>
-    </LayoutStyled>
+    </>
   );
 };
 

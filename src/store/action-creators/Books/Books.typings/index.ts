@@ -7,7 +7,6 @@ export interface BookResponse {
 export interface BookState {
   loading?: boolean;
   payload?: any;
-  searchValue?: string;
   error?: string
 }
 
@@ -24,7 +23,6 @@ interface BookStartAction {
 
 interface BookSuccessAction {
   type: BookActionTypes.BOOK_SUCCESS;
-  searchValue?: string,
   payload: any;
 }
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import BookCard from '../../../components/BookCard';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
-import { RouteNames } from '../../../routes/Routes/Routes.enum';
+import { RouteNames } from '../../../router/routes/routes.enum';
 
 import { BookShowStyled } from './Book.styles';
 

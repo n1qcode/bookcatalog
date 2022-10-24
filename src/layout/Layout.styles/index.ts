@@ -1,9 +1,5 @@
 import styled from 'styled-components';
 
-export const LayoutStyled = styled.div`
-
-`;
-
 export const HeaderStyled = styled.div`
 display: flex;
 margin: 50px 0;

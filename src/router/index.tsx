@@ -1,8 +1,7 @@
 import {Routes, Route, Navigate} from 'react-router-dom';
 
-import {publicRoutes} from '../index';
-
-import {RouteNames} from './Routes.enum';
+import {publicRoutes} from './routes/index';
+import {RouteNames} from './routes/routes.enum';
 
 
 const AppRouter = () => {

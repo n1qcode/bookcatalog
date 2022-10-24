@@ -1,9 +1,8 @@
-import { BookActions, BookActionTypes, BookState } from '../actions/books.typings';
+import { BookActions, BookActionTypes, BookState } from '../../action-creators/Books/Books.typings';
 
 const initialState: BookState = {
   loading: false,
   payload: null,
-  searchValue: '',
   error: ''
 };
 
@@ -12,7 +11,7 @@ export const bookReducer = (state = initialState, action: BookActions): BookStat
   case BookActionTypes.BOOK_START:
     return {...state, loading: true, error: ''};
   case BookActionTypes.BOOK_SUCCESS:
-    return {...state, searchValue: action.searchValue, payload: action.payload};
+    return {...state, payload: action.payload};
   case BookActionTypes.BOOK_END:
     return {...state, loading: false};
   case BookActionTypes.BOOK_ERROR:

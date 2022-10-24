@@ -1,5 +1,5 @@
 import Layout from './layout';
-import AppRouter from './routes/Routes';
+import AppRouter from './router';
 
 function App() {
   return (

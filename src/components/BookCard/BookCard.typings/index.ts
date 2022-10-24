@@ -1,5 +1,4 @@
 
-
 export interface IBookProps {
   title: string,
   authors: string[],

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useActions } from '../../hooks/useActions';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import { RouteNames } from '../../routes/Routes/Routes.enum';
+import { RouteNames } from '../../router/routes/routes.enum';
 import BookCard from '../BookCard';
 
 import { BookListStyled } from './BookList.styles';
@@ -47,7 +47,7 @@ const BookList = () => {
             show={() => showBookHandler(elem.id, elem?.volumeInfo?.title)}
             key={elem.id}/>))}
         {books?.length &&
-        <Pagination sx={{display: 'flex', justifyContent: 'center'}} count={Math.floor(payload?.items?.length / 5)} page={page} onChange={handlePageChange} /> }
+        <Pagination sx={{display: 'flex', justifyContent: 'center'}} count={Math.ceil(payload?.items?.length / 5) || 5} page={page} onChange={handlePageChange} /> }
       </BookListStyled>      :
       <h3>Searching...</h3>
   );
