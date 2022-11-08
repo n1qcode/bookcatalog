@@ -11,8 +11,7 @@ const BookCard: FC<IBookProps> = ({title, authors, publishedDate, description, i
       <div><img src={icon} alt="Book Icon" /></div>
       <BookInfoStyled>
         {title && <h3>{title}</h3>}
-        {authors &&
-        <h4>Authors: {authors?.map((elem, index) => ((index + 1 === authors.length) ? elem : `${elem}, `))}</h4>}
+        {authors && <h4>Authors: {authors?.map((elem, index) => ((index + 1 === authors.length) ? elem : `${elem}, `))}</h4>}
         {publishedDate && <h4>Published Date: {publishedDate}</h4>}
         {publisher && <h4>Publisher: {publisher}</h4>}
         {printType && <h4>Print type: {printType}</h4>}

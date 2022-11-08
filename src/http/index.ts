@@ -1,6 +1,6 @@
 
 export const API_URL = 'https://www.googleapis.com/books';
 
-const $api = (url: string) => fetch(`${API_URL}${url}`);
+const $api = (url: string): Promise<Response> => fetch(`${API_URL}${url}`);
 
 export default $api;

@@ -1,12 +1,12 @@
 import Layout from './layout';
 import AppRouter from './router';
 
-function App() {
+const App = () => {
   return (
     <Layout>
       <AppRouter />
     </Layout>
   );
-}
+};
 
 export default App;

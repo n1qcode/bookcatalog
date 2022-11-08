@@ -1,44 +1,20 @@
 import {Dispatch} from 'redux';
 
-import BookService from '../../../services/BookService';
+import {BookActions, BookActionTypes, BookSearchResponse, BookShowResponse} from './Books.typings';
 
-import { BookActions, BookActionTypes } from './Books.typings';
-
-
-export const bookSearch = (data: string, index: number) => {
+export const book = (data: string, fn: (arg: string) => Promise<Response>): any => {
   return async (dispatch: Dispatch<BookActions>) => {
     try {
       dispatch({type: BookActionTypes.BOOK_START});
-      const response = await BookService.search(data, index);
-      const books = await response.json();
-      console.log('Found books info:', books);
+      const response = await fn(data);
+      const books: BookSearchResponse | BookShowResponse = await response.json();
+      console.log('Book info:', books);
       dispatch({type: BookActionTypes.BOOK_SUCCESS, payload: books});
-      dispatch({type: BookActionTypes.BOOK_END});
     } catch (error) {
-      const errorMes = 'Error during search books:';
+      const errorMes = 'Error into book action-creator function:';
       dispatch({
         type: BookActionTypes.BOOK_ERROR,
-        payload: `${errorMes} ${error}`
-      });
-      console.log(errorMes, error);
-    }
-  };
-};
-
-export const bookShow = (data: number) => {
-  return async (dispatch: Dispatch<BookActions>) => {
-    try {
-      dispatch({type: BookActionTypes.BOOK_START});
-      const response = await BookService.show(data);
-      const book = await response.json();
-      console.log('Selected book info:', book);
-      dispatch({type: BookActionTypes.BOOK_SUCCESS, payload: book});
-      dispatch({type: BookActionTypes.BOOK_END});
-    } catch (error) {
-      const errorMes = 'Error during try to show book:';
-      dispatch({
-        type: BookActionTypes.BOOK_ERROR,
-        payload: `${errorMes} ${error}`
+        error: `${errorMes} ${error}`
       });
       console.log(errorMes, error);
     }

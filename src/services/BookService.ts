@@ -1,8 +1,8 @@
 import $api from '../http';
 
 const BookService = {
-  search: (data: string, index: number) => $api(`/v1/volumes?q="${data}"&maxResults=40&startIndex=${index}`),
-  show: (data: number) => $api(`/v1/volumes/${data}`)
+  search: (data: string): Promise<Response> => $api(`/v1/volumes?q="${encodeURIComponent(data)}"&maxResults=40`),
+  show: (data: string): Promise<Response> => $api(`/v1/volumes/${data}`)
 };
 
 export default BookService;

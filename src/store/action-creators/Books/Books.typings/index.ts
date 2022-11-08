@@ -1,19 +1,50 @@
-export interface BookResponse {
-  kind: string,
-  totalItems: number,
-  items: []
+
+export interface BookInfo {
+  title: string,
+  authors: string[],
+  publishedDate: string,
+  description: string,
+  imageLinks: {
+    thumbnail: string,
+  },
+  publisher: string,
+  printType: string,
+  pageCount: number,
+  language: string,
 }
 
-export interface BookState {
-  loading?: boolean;
-  payload?: any;
-  error?: string
+export type BookItem = {
+  id: string,
+  volumeInfo: BookInfo
+}
+
+export interface BookSearchResponse {
+  kind: string,
+  totalItems: number,
+  items: Array<BookItem>
+}
+
+export interface BookShowResponse {
+  kind: string,
+  totalItems: number,
+  items: BookItem
+}
+
+export interface BookSearchState {
+  loading: boolean;
+  payload: BookSearchResponse;
+  error: string
+}
+
+export interface BookShowState {
+  loading: boolean;
+  payload: BookShowResponse;
+  error: string
 }
 
 export enum BookActionTypes {
   BOOK_START = 'BOOK_START',
   BOOK_SUCCESS = 'BOOK_SUCCESS',
-  BOOK_END = 'BOOK_END',
   BOOK_ERROR = 'BOOK_ERROR'
 }
 
@@ -23,16 +54,12 @@ interface BookStartAction {
 
 interface BookSuccessAction {
   type: BookActionTypes.BOOK_SUCCESS;
-  payload: any;
-}
-
-interface BookEndAction {
-  type: BookActionTypes.BOOK_END;
+  payload: BookSearchResponse | BookShowResponse;
 }
 
 interface BookErrorAction {
   type: BookActionTypes.BOOK_ERROR;
-  payload: string;
+  error: string;
 }
 
-export type BookActions = BookStartAction | BookSuccessAction | BookEndAction | BookErrorAction
+export type BookActions = BookStartAction | BookSuccessAction | BookErrorAction;

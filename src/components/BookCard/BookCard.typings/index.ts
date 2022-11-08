@@ -11,4 +11,3 @@ export interface IBookProps {
   pageCount?: number,
   language?: string,
 }
-
