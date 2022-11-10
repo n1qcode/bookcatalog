@@ -3,23 +3,19 @@ import {BookActions, BookActionTypes, BookShowResponse, BookShowState} from '../
 const initialState: BookShowState = {
   loading: false,
   payload: {
-    kind: '',
-    totalItems: 0,
-    items: {
-      id: '',
-      volumeInfo: {
-        title: '',
-        authors: [],
-        publishedDate: '',
-        description: '',
-        imageLinks: {
-          thumbnail: '',
-        },
-        publisher: '',
-        printType: '',
-        pageCount: 0,
-        language: '',
-      }
+    id: '',
+    volumeInfo: {
+      title: '',
+      authors: [],
+      publishedDate: '',
+      description: '',
+      imageLinks: {
+        thumbnail: '',
+      },
+      publisher: '',
+      printType: '',
+      pageCount: 0,
+      language: '',
     }
   },
   error: ''

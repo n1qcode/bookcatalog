@@ -19,16 +19,11 @@ export type BookItem = {
 }
 
 export interface BookSearchResponse {
-  kind: string,
   totalItems: number,
   items: Array<BookItem>
 }
 
-export interface BookShowResponse {
-  kind: string,
-  totalItems: number,
-  items: BookItem
-}
+export type BookShowResponse = BookItem;
 
 export interface BookSearchState {
   loading: boolean;

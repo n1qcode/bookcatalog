@@ -20,10 +20,9 @@ const BookList = () => {
   const [page, setPage] = useState(1);
 
   const bookFilter = (): BookItem[] => {
-    payload.items.filter(
+    return payload.items?.filter(
       (_, index) => index >= (page - 1) * 5 && index < page * 5
-    );
-    return [];
+    ) || [];
   };
 
   useEffect(() => {
@@ -48,19 +47,19 @@ const BookList = () => {
     <BookListStyled>
       {books.map((elem: BookItem) => (
         <BookCard
-          title={elem.volumeInfo.title}
-          authors={elem.volumeInfo.authors}
-          publishedDate={elem.volumeInfo.publishedDate}
-          description={elem.volumeInfo.description}
-          icon={elem.volumeInfo.imageLinks.thumbnail}
-          show={() => showBookHandler(elem.id, elem.volumeInfo.title)}
+          title={elem.volumeInfo?.title}
+          authors={elem.volumeInfo?.authors}
+          publishedDate={elem.volumeInfo?.publishedDate}
+          description={elem.volumeInfo?.description}
+          icon={elem.volumeInfo?.imageLinks?.thumbnail}
+          show={() => showBookHandler(elem.id, elem.volumeInfo?.title)}
           key={elem.id}
         />
       ))}
-      {books.length && (
+      {!!books.length && (
         <Pagination
           sx={{ display: 'flex', justifyContent: 'center' }}
-          count={Math.ceil(payload.items.length / 5) || 5}
+          count={Math.ceil(payload.items?.length / 5)}
           page={page}
           onChange={handlePageChange}
         />

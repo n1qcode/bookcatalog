@@ -8,7 +8,6 @@ import {
 const initialState: BookSearchState = {
   loading: false,
   payload: {
-    kind: '',
     totalItems: 0,
     items: []
   },
