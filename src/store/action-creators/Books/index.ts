@@ -1,8 +1,10 @@
+// NOTE: this is old version, that is existing just for example
+
 import {Dispatch} from 'redux';
 
 import {BookActions, BookActionTypes, BookSearchResponse, BookShowResponse} from './Books.typings';
 
-export const book = (data: string, fn: (arg: string) => Promise<Response>): any => {
+export const book = (data: string, fn: (arg: string) => Promise<Response>) => {
   return async (dispatch: Dispatch<BookActions>) => {
     try {
       dispatch({type: BookActionTypes.BOOK_START});

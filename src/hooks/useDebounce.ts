@@ -1,3 +1,5 @@
+// NOTE: this is old version
+
 import {useRef} from 'react';
 
 export const useDebounce = (fn, ms) => {

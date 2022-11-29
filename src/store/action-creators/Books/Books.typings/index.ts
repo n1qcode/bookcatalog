@@ -15,7 +15,7 @@ export interface BookInfo {
 
 export type BookItem = {
   id: string,
-  volumeInfo: BookInfo
+  volumeInfo?: BookInfo
 }
 
 export interface BookSearchResponse {
@@ -37,10 +37,16 @@ export interface BookShowState {
   error: string
 }
 
+export interface BookState {
+  search: string,
+  book: string
+}
+
 export enum BookActionTypes {
   BOOK_START = 'BOOK_START',
   BOOK_SUCCESS = 'BOOK_SUCCESS',
-  BOOK_ERROR = 'BOOK_ERROR'
+  BOOK_ERROR = 'BOOK_ERROR',
+  BOOK_SAVE = 'BOOK_SAVE'
 }
 
 interface BookStartAction {
@@ -57,4 +63,9 @@ interface BookErrorAction {
   error: string;
 }
 
-export type BookActions = BookStartAction | BookSuccessAction | BookErrorAction;
+interface BookSaveAction {
+  type: BookActionTypes.BOOK_SAVE,
+  payload: string
+}
+
+export type BookActions = BookStartAction | BookSuccessAction | BookErrorAction | BookSaveAction;

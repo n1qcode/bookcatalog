@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 
-import {bookSearchReducer} from './Book/BookSearchReducer';
-import {bookShowReducer} from './Book/BookShowReducer';
+import {bookApi} from '../api/book.api';
+import bookReducer from '../slices/Book.slice';
 
 export const rootReducer = combineReducers({
-  bookSearch: bookSearchReducer,
-  bookShow: bookShowReducer
+  bookReducer,
+  [bookApi.reducerPath]: bookApi.reducer
 });

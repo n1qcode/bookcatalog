@@ -3,12 +3,13 @@ import { FC } from 'react';
 import {IBookProps} from './BookCard.typings';
 import {BookCardStyled, BookInfoStyled} from './BookCard.styles';
 
-const BookCard: FC<IBookProps> = ({title, authors, publishedDate, description, icon,
-  show, language, pageCount, publisher, printType}) => {
+const BookCard: FC<IBookProps> = props => {
+  const {title, authors, publishedDate, publisher, printType,
+    language, imageLinks, show, pageCount, description} = props;
 
   return (
     <BookCardStyled onClick={show}>
-      <div><img src={icon} alt="Book Icon" /></div>
+      <div><img src={imageLinks?.thumbnail} alt="Book Icon" /></div>
       <BookInfoStyled>
         {title && <h3>{title}</h3>}
         {authors && <h4>Authors: {authors?.map((elem, index) => ((index + 1 === authors.length) ? elem : `${elem}, `))}</h4>}

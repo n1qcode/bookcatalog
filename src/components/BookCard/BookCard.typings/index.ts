@@ -4,7 +4,7 @@ export interface IBookProps {
     authors: string[],
     publishedDate: string,
     description: string,
-    icon: string,
+    imageLinks?: { thumbnail: string },
     show?: () => void,
     publisher?: string,
     printType?: string,

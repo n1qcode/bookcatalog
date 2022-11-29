@@ -4,31 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import BookCard from '../../../components/BookCard';
 import { RouteNames } from '../../../router/routes/routes.enum';
 import {useAppSelector} from '../../../hooks/useAppSelector';
+import {useShowBookQuery} from '../../../store/api/book.api';
 
 import { BookShowStyled } from './Book.styles';
 
 const Book = () => {
-  const {loading, payload} = useAppSelector(state => state.bookShow);
+  const {book} = useAppSelector(state => state.bookReducer);
   const router = useNavigate();
+  const {isLoading, data} = useShowBookQuery(book);
+  const payload = data ?? null;
 
   const backHandler = () => router(RouteNames.HOME);
 
   return (
     <BookShowStyled>
-      {!loading ? <>
-        <div>
-          <Button variant="outlined" size="small" onClick={backHandler}>Back to home</Button>
-        </div>
-        <BookCard
-          title={payload.volumeInfo?.title}
-          authors={payload.volumeInfo?.authors}
-          publishedDate={payload.volumeInfo?.publishedDate}
-          publisher={payload.volumeInfo?.publisher}
-          printType={payload.volumeInfo?.printType}
-          pageCount={payload.volumeInfo?.pageCount}
-          language={payload.volumeInfo?.language}
-          description={payload.volumeInfo?.description}
-          icon={payload.volumeInfo?.imageLinks?.thumbnail} /> </> :
+      {!isLoading ?
+        <>
+          <div>
+            <Button variant="outlined" size="small" onClick={backHandler}
+            >Back to search</Button>
+          </div>
+          {(payload && payload.volumeInfo) && <BookCard {...payload.volumeInfo} />}
+        </> :
         <h3>Book is loading...</h3>}
     </BookShowStyled>
   );
