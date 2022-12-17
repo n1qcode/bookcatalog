@@ -8,12 +8,13 @@ import {setupListeners} from '@reduxjs/toolkit/query';
 
 import {bookApi} from './api/book.api';
 import {rootReducer} from './reducers';
+import loggingMiddleware from './middleware';
 
 // export const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(bookApi.middleware)
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(bookApi.middleware, loggingMiddleware)
 });
 
 setupListeners(store.dispatch);
