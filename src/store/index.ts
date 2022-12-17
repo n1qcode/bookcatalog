@@ -8,7 +8,7 @@ import {setupListeners} from '@reduxjs/toolkit/query';
 
 import {bookApi} from './api/book.api';
 import {rootReducer} from './reducers';
-import loggingMiddleware from './middleware';
+import loggingMiddleware from './middleware/logging';
 
 // export const store = createStore(rootReducer, applyMiddleware(thunk));
 
